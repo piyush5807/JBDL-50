@@ -9,6 +9,8 @@ import java.util.function.Predicate;
 public class Main {
 
   public static void main(String[] args) {
+
+    System.out.println(Thread.currentThread());
 //    System.out.println("Hello world!");
 
 //    SampleInterface sampleInterface = new SampleInterface() {
@@ -87,12 +89,23 @@ public class Main {
     // Imperative
     List<Integer> nums = Arrays.asList(1, 3, 5, 4, 7, 6, 8, 9);
 
-    System.out.println(sum2(nums));
+//    System.out.println(sum2(nums));
+
+    printEvenNos(nums);
 
     // Ques. You are given a list of integers, you have find any even number
 
     // imperative (traditional) and declarative (streams)
 
+    // Ques. You have to print all the even numbers
+
+  }
+
+  public static void printEvenNos(List<Integer> nums){
+
+    nums.stream()
+        .filter(x -> x % 2 == 0)
+        .reduce(0, (x, y) -> add(x, y));   // f1 (a1, a2)
   }
 
   static long ops = 0;
@@ -141,7 +154,7 @@ public class Main {
           ops += 1l;
           System.out.println("Mapping : " + x);
           return x * x;
-        }).reduce(0, (a, b) -> a + b);
+        }).reduce(0, Main::add);
 
     long end = System.currentTimeMillis();
 
@@ -149,6 +162,14 @@ public class Main {
     System.out.println("Ops are = " + ops);
 
     return 0;
+  }
+
+  private static int add(int a, int b){
+    return a + b;
+  }
+
+  private static int subtract(int a, int b){
+    return a - b;
   }
 
   public static int sum(List<Integer> nums){
