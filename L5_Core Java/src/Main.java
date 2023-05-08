@@ -2,10 +2,10 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
-        BankAccount bankAccount = new BankAccount(1, "Test_account", 5000.0);
+        BankAccount bankAccount = new BankAccount(1, "Test_account", 5000l);
 
-        MyThread t1 = new MyThread(true, 500.0, bankAccount);
-        MyThread t2 = new MyThread(false, 300.0, bankAccount);
+        MyThread t1 = new MyThread(true, 500l, bankAccount);
+        MyThread t2 = new MyThread(false, 300l, bankAccount);
 
         long start = System.currentTimeMillis();
 

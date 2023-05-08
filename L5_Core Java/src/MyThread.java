@@ -1,11 +1,11 @@
 public class MyThread extends Thread{
 
     private boolean isDeposit;
-    private Double amount;
+    private Long amount;
 
-    private volatile BankAccount bankAccount;
+    private BankAccount bankAccount;
 
-    MyThread(boolean isDeposit, Double amount, BankAccount bankAccount){
+    MyThread(boolean isDeposit, Long amount, BankAccount bankAccount){
         this.isDeposit = isDeposit;
         this.amount = amount;
         this.bankAccount = bankAccount;
@@ -45,14 +45,8 @@ public class MyThread extends Thread{
 
     }
 
-    public void test2(){               // Critical section
+    public void test2(){
         System.out.println("Inside thread - " + currentThread().getName());
-
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
 
         System.out.println("Inside synchronized block - " + currentThread().getName());
 

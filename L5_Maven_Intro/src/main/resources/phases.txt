@@ -1,0 +1,14 @@
+1. Clean - Deletes the target folder / byte code + jar file
+2. Validate - Validates the presence of pom.xml and src files
+3. Compile - Compiles all the classes in the main directory and looks for any syntactical issue
+4. Test - Compiles all the classes in the test directory and looks for any syntactical issue
+5. Package - Responsible for creating a jar file and put it in the target folder
+6. Verify - Similar to validate, not very important phase, it just verifies whether you have a jar file or not
+7. Install - Copies the jar present in target folder to the local repository. Useful in scenarios when one local project depends on another local project
+8. Site - Just checks for settings.xml and verifies if there’s a remote repo present or not
+9. Deploy - Deploys the jar from local repo to the remote repo so that other developers working on the same project can clone the latest changes
+
+
+// TODO:
+1. Try to change the local repo's location from .m2 to something else\
+2. Try to change the target folder's name

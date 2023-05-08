@@ -1,17 +1,19 @@
+import java.util.concurrent.atomic.AtomicLong;
+
 public class BankAccount {
 
     private int id;
     private String name;
 
-    private volatile Double balance;
+    private AtomicLong balance = new AtomicLong();
 
-    public BankAccount(int id, String name, Double balance) {
+    public BankAccount(int id, String name, Long balance) {
         this.id = id;
         this.name = name;
-        this.balance = balance;
+        this.balance.set(balance);
     }
 
-    public void deposit(Double amount){
+    public void deposit(Long amount){
 //        try {
 //            Thread.sleep(20000);
 //        } catch (InterruptedException e) {
@@ -19,7 +21,7 @@ public class BankAccount {
 //        }
 
         System.out.println("In deposit: current thread : " + Thread.currentThread().getName() + ", balance = " + this.balance);
-        this.balance += amount;
+        this.balance.addAndGet(amount); // To achieve atomicity
 
 
 //        try {
@@ -31,7 +33,7 @@ public class BankAccount {
 
     }
 
-    public void withdraw(Double amount){
+    public void withdraw(Long amount){
 //        try {
 //            Thread.sleep(20000);
 //        } catch (InterruptedException e) {
@@ -39,7 +41,7 @@ public class BankAccount {
 //        }
 //        synchronized (this) {
         System.out.println("In withdraw: current thread : " + Thread.currentThread().getName() + ", balance = " + this.balance);
-            this.balance -= amount;
+            this.balance.addAndGet(-amount); // To achieve atomicity
 //        }
 
         // BankAccount@495
@@ -67,11 +69,9 @@ public class BankAccount {
         this.name = name;
     }
 
-    public Double getBalance() {
+    public AtomicLong getBalance() {
         return balance;
     }
 
-    public void setBalance(Double balance) {
-        this.balance = balance;
-    }
+
 }
