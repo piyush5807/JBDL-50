@@ -2,29 +2,32 @@ package com.example.demodb;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class DBOperations {
 
     private static Logger logger = LoggerFactory.getLogger(DBOperations.class);
 
     private Connection connection;
 
-    public DBOperations(){
+    public DBOperations(@Value("${db.url}") String url,
+                        @Value("${db.user}") String username,
+                        @Value("${db.pass}") String password){
         try {
-            createConnection();
+//            createConnection();
+            this.connection = DriverManager.getConnection(url, username, password);
             createEmployeeTable();
         }catch (Exception e){
             logger.error("Exception in creating the connection with the error - {}", e);
         }
     }
 
-    private void createConnection() throws SQLException {
-        this.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/employee_db", "root", "");
-    }
 
     /**
      * Auto increment works on

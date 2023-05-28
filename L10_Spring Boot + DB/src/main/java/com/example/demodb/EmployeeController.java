@@ -1,5 +1,6 @@
 package com.example.demodb;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
@@ -12,12 +13,8 @@ public class EmployeeController {
     // db server - 127.0.0.1 3306
     // app server - 127.0.0.1 8080
 
+    @Autowired
     private DBOperations dbOperations;
-
-    public EmployeeController(){
-        this.dbOperations = new DBOperations();
-    }
-
 
     @GetMapping("/employee")
     public List<Employee> getEmployees() throws SQLException {
