@@ -10,15 +10,6 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 @Configuration
 public class Config extends WebSecurityConfigurerAdapter {
 
-    static{
-        /*
-        dsfghjk
-        hgjm,.
-        hgvjbnm
-        hgjjn
-         */
-    }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 //         @formatter:off
